@@ -23,6 +23,7 @@ import javax.ws.rs.core.Response
 import de.treverix.data.MemberRepository
 import de.treverix.model.Member
 import de.treverix.service.MemberRegistration
+import de.treverix.bootstrap.annotation.ConstructorInjection
 
 /**
  * JAX-RS Example
@@ -31,6 +32,7 @@ import de.treverix.service.MemberRegistration
  */
 @Path("/members")
 @RequestScoped
+@ConstructorInjection
 class MemberResourceRESTService {
 
     @Inject Logger log

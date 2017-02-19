@@ -9,12 +9,14 @@ import javax.inject.Inject
 import javax.inject.Named
 import de.treverix.model.Member
 import de.treverix.service.MemberRegistration
+import de.treverix.bootstrap.annotation.ConstructorInjection
 
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
 // Read more about the @Model stereotype in this FAQ:
 // http://www.cdi-spec.org/faq/#accordion6
 @Model
+@ConstructorInjection
 class MemberController {
 
     @Inject FacesContext facesContext

@@ -4,8 +4,10 @@ import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 import javax.persistence.EntityManager
 import de.treverix.model.Member
+import de.treverix.bootstrap.annotation.ConstructorInjection
 
 @ApplicationScoped
+@ConstructorInjection
 class MemberRepository {
 
     @Inject extension EntityManager em

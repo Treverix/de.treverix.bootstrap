@@ -31,7 +31,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(Arquillian)
-class MemberRegistrationTest {
+class MemberRegistrationIT {
 
     @Deployment
     def static createTestArchive() {
@@ -42,11 +42,8 @@ class MemberRegistrationTest {
             .addAsWebInfResource('test-ds.xml', 'test-ds.xml')
     }
 
-    @Inject
-    extension MemberRegistration memberRegistration
-
-    @Inject
-    Logger log
+    @Inject extension MemberRegistration memberRegistration
+    @Inject Logger log
 
     @Test
     def void testRegister() throws Exception {

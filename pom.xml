@@ -36,6 +36,9 @@
     </licenses>
 
     <properties>
+
+        <bootstrap.version>1.0-SNAPSHOT</bootstrap.version>
+
         <!-- Explicitly declaring the source encoding eliminates the following
             message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
@@ -63,6 +66,17 @@
 
         <!-- xtend version -->
         <xtend.version>2.10.0</xtend.version>
+
+        <!-- lombok -->
+        <lombok.version>1.16.14</lombok.version>
+
+        <!-- test dependencies -->
+        <cucumber.version>1.2.5</cucumber.version>
+        <mockito.version>2.7.9</mockito.version>
+        <assertj.version>3.6.2</assertj.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <objenesis.version>2.5.1</objenesis.version>
+
     </properties>
 
     <modules>
@@ -73,6 +87,12 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>de.treverix</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${bootstrap.version}</version>
+            </dependency>
 
             <!-- Define the version of the EJB jar so that we don't need
                 to repeat ourselves in every module -->
@@ -121,6 +141,61 @@
                 <groupId>org.eclipse.xtend</groupId>
                 <artifactId>org.eclipse.xtend.lib</artifactId>
                 <version>${xtend.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.objenesis</groupId>
+                <artifactId>objenesis</artifactId>
+                <version>${objenesis.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.xtend</groupId>
+                <artifactId>org.eclipse.xtend.core</artifactId>
+                <version>${xtend.version}</version>
+                <scope>test</scope>
             </dependency>
 
         </dependencies>

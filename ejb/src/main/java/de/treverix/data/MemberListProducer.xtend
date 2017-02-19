@@ -9,8 +9,10 @@ import javax.inject.Inject
 import javax.inject.Named
 import java.util.List
 import de.treverix.model.Member
+import de.treverix.bootstrap.annotation.ConstructorInjection
 
 @RequestScoped
+@ConstructorInjection
 class MemberListProducer {
 
     @Inject MemberRepository memberRepository

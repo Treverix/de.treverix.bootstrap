@@ -42,6 +42,11 @@
    <dependencies>
 
       <dependency>
+         <groupId>de.treverix</groupId>
+         <artifactId>annotations</artifactId>
+      </dependency>
+
+      <dependency>
          <groupId>org.eclipse.xtend</groupId>
          <artifactId>org.eclipse.xtend.lib</artifactId>
       </dependency>
