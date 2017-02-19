@@ -15,9 +15,10 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>de.treverix</groupId>
     <artifactId>bootstrap</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -35,14 +36,14 @@
     </licenses>
 
     <properties>
-        <!-- Explicitly declaring the source encoding eliminates the following 
+        <!-- Explicitly declaring the source encoding eliminates the following
             message: -->
-        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
             resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- JBoss dependency versions -->
-        
+
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
 
         <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
@@ -59,6 +60,9 @@
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.source>1.6</maven.compiler.source>
+
+        <!-- xtend version -->
+        <xtend.version>2.10.0</xtend.version>
     </properties>
 
     <modules>
@@ -70,7 +74,7 @@
     <dependencyManagement>
         <dependencies>
 
-            <!-- Define the version of the EJB jar so that we don't need 
+            <!-- Define the version of the EJB jar so that we don't need
                 to repeat ourselves in every module -->
             <dependency>
                 <groupId>de.treverix</groupId>
@@ -78,8 +82,8 @@
                 <version>${project.version}</version>
                 <type>ejb</type>
             </dependency>
-            
-            <!-- Define the version of the WAR so that we don't need to repeat 
+
+            <!-- Define the version of the WAR so that we don't need to repeat
                 ourselves in every module -->
             <dependency>
                 <groupId>de.treverix</groupId>
@@ -89,13 +93,13 @@
                 <scope>compile</scope>
             </dependency>
 
-            <!-- JBoss distributes a complete set of Java EE 6 APIs including 
-                a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
-                a collection) of artifacts. We use this here so that we always get the correct 
-                versions of artifacts. Here we use the jboss-javaee-6.0-with-tools stack 
-                (you can read this as the JBoss stack of the Java EE 6 APIs, with some extras 
-                tools for your project, such as Arquillian for testing) and the jboss-javaee-6.0-with-hibernate 
-                stack you can read this as the JBoss stack of the Java EE 6 APIs, with extras 
+            <!-- JBoss distributes a complete set of Java EE 6 APIs including
+                a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
+                a collection) of artifacts. We use this here so that we always get the correct
+                versions of artifacts. Here we use the jboss-javaee-6.0-with-tools stack
+                (you can read this as the JBoss stack of the Java EE 6 APIs, with some extras
+                tools for your project, such as Arquillian for testing) and the jboss-javaee-6.0-with-hibernate
+                stack you can read this as the JBoss stack of the Java EE 6 APIs, with extras
                 from the Hibernate family of projects) -->
             <dependency>
                 <groupId>org.jboss.bom.eap</groupId>
@@ -113,6 +117,12 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.eclipse.xtend</groupId>
+                <artifactId>org.eclipse.xtend.lib</artifactId>
+                <version>${xtend.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -120,8 +130,8 @@
         <pluginManagement>
             <plugins>
                 <!-- The JBoss AS plugin deploys your ear to a local JBoss EAP container -->
-                <!-- Due to Maven's lack of intelligence with EARs we need 
-                    to configure the jboss-as maven plugin to skip deployment for all modules. 
+                <!-- Due to Maven's lack of intelligence with EARs we need
+                    to configure the jboss-as maven plugin to skip deployment for all modules.
                     We then enable it specifically in the ear module. -->
                 <plugin>
                     <groupId>org.jboss.as.plugins</groupId>
@@ -131,6 +141,28 @@
                     <configuration>
                         <skip>true</skip>
                     </configuration>
+                </plugin>
+
+                <!-- Configuring the xtend plugin -->
+                <plugin>
+                    <groupId>org.eclipse.xtend</groupId>
+                    <artifactId>xtend-maven-plugin</artifactId>
+                    <version>${xtend.version}</version>
+                    <executions>
+                        <execution>
+                            <id>compile</id>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>testCompile</goal>
+                                <goal>xtend-install-debug-info</goal>
+                                <goal>xtend-test-install-debug-info</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>src/main/xtend-gen</outputDirectory>
+                                <testOutputDirectory>src/test/xtend-gen</testOutputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

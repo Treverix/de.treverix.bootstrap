@@ -67,3 +67,7 @@ buildNumber.properties
 
 # Exclude maven wrapper
 !/.mvn/wrapper/maven-wrapper.jar
+
+## Generated xtend artifacts
+**/src/main/xtend-gen
+**/src/test/xtend-gen
