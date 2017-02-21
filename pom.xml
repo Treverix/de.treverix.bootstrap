@@ -76,6 +76,8 @@
         <assertj.version>3.6.2</assertj.version>
         <hamcrest.version>1.3</hamcrest.version>
         <objenesis.version>2.5.1</objenesis.version>
+        <selenium.version>2.53.1</selenium.version>
+        <phantomjsdriver.version>1.3.0</phantomjsdriver.version>
 
     </properties>
 
@@ -203,6 +205,18 @@
                 <artifactId>org.eclipse.xtend.core</artifactId>
                 <version>${xtend.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-java</artifactId>
+                <version>${selenium.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codeborne</groupId>
+                <artifactId>phantomjsdriver</artifactId>
+                <version>${phantomjsdriver.version}</version>
             </dependency>
 
         </dependencies>
